@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,7 +38,14 @@ public class EntryScreenActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        //Get current logged in user and display on navigation drawer
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView textView  = (TextView) headerView.findViewById(R.id.textView);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        textView.setText(auth.getCurrentUser().getEmail());
+
     }
 
     @Override
