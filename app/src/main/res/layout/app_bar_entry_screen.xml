@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cse6324.university_bazaar_system.EntryScreenActivity">
+    tools:context="com.example.cse6324.university_bazaar_system.EntryScreenActivity"
+    android:id="@+id/app_bar_entry_screen">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        android:id="@+id/app_bar">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,6 +22,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_entry_screen" />
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:id="@+id/content_entry"
+        android:layout_below="@+id/app_bar" />
 
 </RelativeLayout>

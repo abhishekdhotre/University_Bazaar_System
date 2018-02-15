@@ -15,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +34,13 @@ public class EntryScreenActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FragmentManager fragMan = getFragmentManager();
+        Fragment myFrag = FeedFragment.newInstance("", "");
+        fragMan.beginTransaction()
+                .add(R.id.content_entry, myFrag)
+                .commit();
+        getSupportActionBar().setTitle(R.string.home);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -46,6 +56,10 @@ public class EntryScreenActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
         textView.setText(auth.getCurrentUser().getEmail());
 
+    }
+
+    public void setActionBarTitle(int title) {
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
@@ -87,16 +101,35 @@ public class EntryScreenActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            startActivity(new Intent(EntryScreenActivity.this, EntryScreenActivity.class));
-            finish();
+            FragmentManager fragMan = getFragmentManager();
+            Fragment myFrag = FeedFragment.newInstance("", "");
+            FragmentTransaction transaction = fragMan.beginTransaction();
+            transaction.replace(R.id.content_entry, myFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_user_profile) {
 
         } else if (id == R.id.nav_clubs_organizations) {
-
+            FragmentManager fragMan = getFragmentManager();
+            Fragment myFrag = ClubFragment.newInstance("", "");
+            FragmentTransaction transaction = fragMan.beginTransaction();
+            transaction.replace(R.id.content_entry, myFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_messages) {
-
+            FragmentManager fragMan = getFragmentManager();
+            Fragment myFrag = MessagesFragment.newInstance("", "");
+            FragmentTransaction transaction = fragMan.beginTransaction();
+            transaction.replace(R.id.content_entry, myFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_marketplace) {
-
+            FragmentManager fragMan = getFragmentManager();
+            Fragment myFrag = MarketplaceFragment.newInstance("", "");
+            FragmentTransaction transaction = fragMan.beginTransaction();
+            transaction.replace(R.id.content_entry, myFrag);
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_logout) {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signOut();
