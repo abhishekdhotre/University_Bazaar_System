@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sec_questions">
+        <item>In what city were you born?</item>
+        <item>What high school did you attend?</item>
+        <item>What is your mother\'s maiden name?</item>
+        <item>What was the make of your first car?</item>
+        <item>What street did you grow up on?</item>
+    </string-array>
+</resources>
