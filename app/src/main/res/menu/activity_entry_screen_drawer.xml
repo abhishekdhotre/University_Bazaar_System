@@ -7,26 +7,26 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="Home" />
+            android:title="@string/home" />
         <item
             android:id="@+id/nav_user_profile"
             android:icon="@drawable/ic_person_black_24dp"
-            android:title="User Profile" />
+            android:title="@string/userprofile" />
         <item
             android:id="@+id/nav_clubs_organizations"
             android:icon="@drawable/ic_group_black_24dp"
-            android:title="Clubs/Organizations" />
+            android:title="@string/clubs" />
         <item
             android:id="@+id/nav_messages"
             android:icon="@drawable/ic_message_black_24dp"
-            android:title="Messages" />
+            android:title="@string/messages" />
         <item
             android:id="@+id/nav_marketplace"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
-            android:title="Marketplace" />
+            android:title="@string/market" />
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_logout"
-            android:title="Logout" />
+            android:title="@string/logout" />
     </group>
 </menu>
