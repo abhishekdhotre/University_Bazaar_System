@@ -23,7 +23,7 @@
     </string>
 
     <string name="email">Email</string>
-    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="minimum_password">Password too short, enter minimum 8 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="change_email">Change Email</string>
     <string name="change_password">Change Password</string>
@@ -33,9 +33,14 @@
     <string name="title_activity_profile">Firebase</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
+    <string name="conf_password">Confirm Password</string>
+    <string name="student_id">Student ID</string>
+    <string name="phone">Phone</string>
+    <string name="answer">Answer</string>
+    <string name="hint_name">Full Name</string>
     <string name="btn_login">LOGIN</string>
-    <string name="btn_link_to_register">Not a member? Get registered in now!</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Register now!</string>
     <string name="btn_link_to_login">Already registered. Login Me!</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
     <string name="btn_forgot_password">Forgot your password?</string>

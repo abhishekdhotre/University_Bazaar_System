@@ -24,6 +24,7 @@
             android:label="@string/title_activity_entry"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ResetPasswordActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
