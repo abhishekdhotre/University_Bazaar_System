@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,12 +71,18 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
+                    inputEmail.setError("Enter email address");
+                    return;
+                } else if (!isValidEmail(email)) {
+                    inputEmail.setError("Enter a valid email address");
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    inputPassword.setError("Enter password");
+                    return;
+                } else if (8 > password.length()) {
+                    inputPassword.setError("Enter a password of 8 or more characters");
                     return;
                 }
 
@@ -94,11 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                     // there was an error
                                     progressBar.setVisibility(View.GONE);
                                     loginLayout.setAlpha(1f);
-                                    if (password.length() < 8) {
-                                        inputPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
+                                    Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                 } else {
                                     Intent intent = new Intent(LoginActivity.this, EntryScreenActivity.class);
                                     startActivity(intent);
@@ -108,5 +111,19 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private boolean isValidEmail(String email) {
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            String[] emailSplit = email.split("@");
+            if (2 != emailSplit.length) {
+                return false;
+            } else {
+                if (emailSplit[1].equals("mavs.uta.edu")) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
