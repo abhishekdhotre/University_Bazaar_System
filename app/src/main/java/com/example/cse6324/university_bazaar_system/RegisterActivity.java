@@ -57,48 +57,62 @@ public class RegisterActivity extends AppCompatActivity {
                 final String studentID = sid.getText().toString();
                 final String phone = phonenum.getText().toString();
 
-                boolean allConditions = false;
-                String toastMessage = null;
-                EditText eText = null;
+                boolean allConditions = true;
 
+                //Name
                 if (0 == fullName.length()) {
-                    toastMessage = "Enter your name";
-                    eText = name;
-                } else if (0 == email.length()) {
-                    toastMessage = "Enter an email address";
-                    eText = inputEmail;
-                } else if (!isValidEmail(email)) {
-                    toastMessage = "Enter a valid email address";
-                    eText = inputEmail;
-                } else if (0 == pass.length()) {
-                    toastMessage = "Enter a password";
-                    eText = inputPassword;
-                } else if (8 > pass.length()) {
-                    toastMessage = "Enter a password of 8 or more characters";
-                    eText = inputPassword;
-                } else if (0 == conf_pass.length()) {
-                    toastMessage = "Enter a password";
-                    eText = confPassword;
-                } else if (8 > conf_pass.length()) {
-                    toastMessage = "Enter a password of 8 or more characters";
-                    eText = confPassword;
-                } else if (!pass.equals(conf_pass)) {
-                    toastMessage = "Passwords do not match";
-                    eText = confPassword;
-                } else if (10 != studentID.length() || !TextUtils.isDigitsOnly(studentID)) {
-                    toastMessage = "Enter a valid student ID";
-                    eText = sid;
-                } else if (10 != phone.length() || !TextUtils.isDigitsOnly(phone)) {
-                    toastMessage = "Enter a valid phone number";
-                    eText = phonenum;
-                } else {
-                    allConditions = true;
+                    name.setError("Name is required");
+                    allConditions = false;
                 }
 
-                if (!allConditions) {
-                    Toast.makeText(getApplicationContext(), toastMessage, Toast.LENGTH_SHORT).show();
-                    eText.requestFocus();
-                } else {
+                //Email
+                if (0 == email.length()) {
+                    inputEmail.setError("Email is required");
+                    allConditions = false;
+                } else if (!isValidEmail(email)) {
+                    inputEmail.setError("Enter a valid email address");
+                    allConditions = false;
+                }
+
+                //Passwords
+                if (0 == pass.length()) {
+                    inputPassword.setError("Password is required");
+                    allConditions = false;
+                } else if (8 > pass.length()) {
+                    inputPassword.setError("Enter a password of 8 or more characters");
+                    allConditions = false;
+                }
+                if (0 == conf_pass.length()) {
+                    confPassword.setError("Password is required");
+                    allConditions = false;
+                } else if (8 > conf_pass.length()) {
+                    confPassword.setError("Enter a password of 8 or more characters");
+                    allConditions = false;
+                }
+                if (7 < pass.length() && 7 < conf_pass.length() && !pass.equals(conf_pass)) {
+                    confPassword.setError("Passwords do not match");
+                    allConditions = false;
+                }
+
+                //Student ID
+                if (0 == studentID.length()) {
+                    sid.setError("Student ID is required");
+                    allConditions = false;
+                } else if (10 != studentID.length() || !TextUtils.isDigitsOnly(studentID)) {
+                    sid.setError("Enter a valid student ID");
+                    allConditions = false;
+                }
+
+                //Phone
+                if (0 == phone.length()) {
+                    phonenum.setError("Phone number is required");
+                    allConditions = false;
+                } else if (10 != phone.length() || !TextUtils.isDigitsOnly(phone)) {
+                    phonenum.setError("Enter a valid phone number");
+                    allConditions = false;
+                }
+
+                if (allConditions) {
                     progressBar.setVisibility(View.VISIBLE);
                     regLayout.setVisibility(View.GONE);
                     auth.signInWithEmailAndPassword(email, "invalidpass").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -138,6 +152,8 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
                     });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please fix the errors", Toast.LENGTH_SHORT).show();
                 }
             }
         });
