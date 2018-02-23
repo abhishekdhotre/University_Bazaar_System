@@ -9,7 +9,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,7 +22,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
-    private ProgressBar progressBar;
+    private RelativeLayout progressBar;
+    private LinearLayout loginLayout;
     private Button btnSignup, btnLogin, btnReset;
 
     @Override
@@ -39,9 +41,10 @@ public class LoginActivity extends AppCompatActivity {
         // set the view now
         setContentView(R.layout.activity_login);
 
+        loginLayout = findViewById(R.id.login_layout);
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progress_layout);
         btnSignup = findViewById(R.id.btn_signup);
         btnLogin = findViewById(R.id.btn_login);
         btnReset = findViewById(R.id.btn_reset_password);
@@ -77,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
+                loginLayout.setAlpha(0.4f);
 
                 //authenticate user
                 auth.signInWithEmailAndPassword(email, password)
@@ -86,9 +90,10 @@ public class LoginActivity extends AppCompatActivity {
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
-                                progressBar.setVisibility(View.GONE);
                                 if (!task.isSuccessful()) {
                                     // there was an error
+                                    progressBar.setVisibility(View.GONE);
+                                    loginLayout.setAlpha(1f);
                                     if (password.length() < 8) {
                                         inputPassword.setError(getString(R.string.minimum_password));
                                     } else {
