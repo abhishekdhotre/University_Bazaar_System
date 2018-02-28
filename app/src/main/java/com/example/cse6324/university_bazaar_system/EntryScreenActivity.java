@@ -118,8 +118,6 @@ public class EntryScreenActivity extends AppCompatActivity
             transaction.replace(R.id.content_entry, myFrag);
             transaction.addToBackStack(null);
             transaction.commit();
-        } else if (id == R.id.nav_user_profile) {
-
         } else if (id == R.id.nav_clubs_organizations) {
             FragmentManager fragMan = getFragmentManager();
             Fragment myFrag = ClubFragment.newInstance("", "");
