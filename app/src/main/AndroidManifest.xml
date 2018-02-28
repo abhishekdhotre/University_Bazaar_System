@@ -23,8 +23,9 @@
             android:name=".EntryScreenActivity"
             android:label="@string/title_activity_entry"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ResetPasswordActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".ResetPasswordActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ClubHomeActivity"></activity>
     </application>
 
 </manifest>
