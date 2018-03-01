@@ -35,7 +35,7 @@ public class ClubHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_home);
 
-        etPostMessage = (EditText) findViewById(R.id.etPostMsg);
+        etPostMessage = findViewById(R.id.tvPostMsg);
 
         ReadSingleContact();
     }
