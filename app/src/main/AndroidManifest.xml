@@ -25,7 +25,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".ClubHomeActivity"></activity>
+        <activity android:name=".ClubHomeActivity" />
+        <activity android:name=".ManageClubActivity"></activity>
     </application>
 
 </manifest>
