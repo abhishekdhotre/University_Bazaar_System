@@ -119,12 +119,14 @@ public class EntryScreenActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
         } else if (id == R.id.nav_clubs_organizations) {
-            FragmentManager fragMan = getFragmentManager();
+            /*FragmentManager fragMan = getFragmentManager();
             Fragment myFrag = ClubFragment.newInstance("", "");
             FragmentTransaction transaction = fragMan.beginTransaction();
             transaction.replace(R.id.content_entry, myFrag);
             transaction.addToBackStack(null);
-            transaction.commit();
+            transaction.commit();*/
+            Intent myIntent = new Intent(EntryScreenActivity.this, ClubListActivity.class);
+            EntryScreenActivity.this.startActivity(myIntent);
         } else if (id == R.id.nav_messages) {
             FragmentManager fragMan = getFragmentManager();
             Fragment myFrag = MessagesFragment.newInstance("", "");
