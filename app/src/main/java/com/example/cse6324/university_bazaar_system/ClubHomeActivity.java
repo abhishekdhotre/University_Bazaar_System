@@ -103,6 +103,7 @@ public class ClubHomeActivity extends AppCompatActivity {
             data.put("postmsg",etPostMessage.getText().toString());
             docRef.document("post"+count).set(data);
 
+            //Toast to display that post was posted successfully.
             Toast.makeText(ClubHomeActivity.this,"Posted Successfully",Toast.LENGTH_SHORT);
         }
 
