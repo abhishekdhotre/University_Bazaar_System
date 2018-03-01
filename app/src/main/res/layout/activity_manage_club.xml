@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_vertical_margin"
+    tools:context="com.example.cse6324.university_bazaar_system.ManageClubActivity">
+
+    <TextView
+        android:id="@+id/tvClubName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="Club Name"/>
+
+    <EditText
+        android:id="@+id/etClubName"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvClubName" />
+
+    <TextView
+        android:id="@+id/tvClubDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/etClubName"
+        android:text="Club Desription"/>
+
+    <EditText
+        android:id="@+id/etClubDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/tvClubDesc"/>
+
+    <TextView
+        android:id="@+id/tvJoinRequests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etClubDesc"
+        android:layout_margin="10dp"
+        android:text="Join Requests"
+        android:textSize="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/llRequestList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/tvJoinRequests"
+        android:layout_below="@+id/tvJoinRequests"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/btnUpdateClub"
+        android:text="Save"
+        android:background="@drawable/post_message_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

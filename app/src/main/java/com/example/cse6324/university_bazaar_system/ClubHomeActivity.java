@@ -24,17 +24,10 @@ public class ClubHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_home);
-
-        ReadSingleContact();
+        ReadAllPosts();
     }
 
-    private void displayClubPosts() {
-        DocumentReference docRef;
-        docRef = FirebaseFirestore.getInstance().document("posts/Advance SE");
-        CollectionReference reference =  docRef.getParent();
-        Query mQuery = FirebaseFirestore.getInstance().collection("posts");
-    }
-    private void ReadSingleContact() {
+    private void ReadAllPosts() {
         final LinearLayout linearLayout = findViewById(R.id.llMsgDisplay);
         FirebaseFirestore.getInstance().collection("posts").document("AdvanceSE").collection("allposts").orderBy("postedat", Query.Direction.DESCENDING)
                 .get()
@@ -43,7 +36,6 @@ public class ClubHomeActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot document : task.getResult()) {
-
                                 TextView tvDisplayPosts = new TextView(ClubHomeActivity.this);
                                 tvDisplayPosts.setTextColor(getColor(R.color.white));
                                 tvDisplayPosts.setBackground(getDrawable(R.drawable.post_message_background));
