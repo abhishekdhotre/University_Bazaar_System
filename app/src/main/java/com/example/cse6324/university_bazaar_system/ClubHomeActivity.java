@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -18,12 +20,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 public class ClubHomeActivity extends AppCompatActivity {
+
+    private int count = 0;
+    private EditText etPostMessage;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_home);
+
+        etPostMessage = (EditText) findViewById(R.id.etPostMsg);
 
         ReadSingleContact();
     }
@@ -31,9 +43,10 @@ public class ClubHomeActivity extends AppCompatActivity {
     private void displayClubPosts() {
         DocumentReference docRef;
         docRef = FirebaseFirestore.getInstance().document("posts/Advance SE");
-        CollectionReference reference =  docRef.getParent();
+        CollectionReference reference = docRef.getParent();
         Query mQuery = FirebaseFirestore.getInstance().collection("posts");
     }
+
     private void ReadSingleContact() {
         final LinearLayout linearLayout = findViewById(R.id.llMsgDisplay);
         FirebaseFirestore.getInstance().collection("posts").document("AdvanceSE").collection("allposts").orderBy("postedat", Query.Direction.DESCENDING)
@@ -72,5 +85,21 @@ public class ClubHomeActivity extends AppCompatActivity {
                 });
     }
 
+    public void post(View v) {
 
+        if (etPostMessage.getText().length() == 0) {
+            Toast.makeText(this, "Enter text to post", Toast.LENGTH_SHORT);
+        } else {
+            count++;
+            CollectionReference docRef = FirebaseFirestore.getInstance().collection("posts").document("AdvanceSE").collection("allposts");
+            Map<String, Object> data = new HashMap<>();
+            data.put("postdat", (new Date()).getTime());
+            data.put("postedby", FirebaseAuth.getInstance().getCurrentUser().toString());
+            data.put("postmsg", etPostMessage.getText().toString());
+            docRef.document("post" + count).set(data);
+
+            //Toast to display that post was posted successfully.
+            Toast.makeText(ClubHomeActivity.this, "Posted Successfully", Toast.LENGTH_SHORT);
+        }
+    }
 }
