@@ -1,5 +1,6 @@
 package com.example.cse6324.university_bazaar_system;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,12 +25,16 @@ public class ClubHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_home);
+
+        Intent intent = getIntent();
+        String club_name = intent.getStringExtra("key");
+
         ReadAllPosts();
     }
 
     private void ReadAllPosts() {
         final LinearLayout linearLayout = findViewById(R.id.llMsgDisplay);
-        FirebaseFirestore.getInstance().collection("posts").document("AdvanceSE").collection("allposts").orderBy("postedat", Query.Direction.DESCENDING)
+        FirebaseFirestore.getInstance().collection("posts").document("club_name").collection("allposts").orderBy("postedat", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
