@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -126,8 +127,13 @@ public class EntryScreenActivity extends AppCompatActivity
             transaction.replace(R.id.content_entry, myFrag);
             transaction.addToBackStack(null);
             transaction.commit();*/
-            Intent myIntent = new Intent(EntryScreenActivity.this, ClubListActivity.class);
-            EntryScreenActivity.this.startActivity(myIntent);
+            try{
+                Intent myIntent = new Intent(EntryScreenActivity.this, ClubListActivity.class);
+                EntryScreenActivity.this.startActivity(myIntent);
+            }catch (Exception ex){
+                Toast.makeText(EntryScreenActivity.this, ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
         } else if (id == R.id.nav_messages) {
             FragmentManager fragMan = getFragmentManager();
             Fragment myFrag = MessagesFragment.newInstance("", "");

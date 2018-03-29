@@ -36,7 +36,7 @@
         android:layout_below="@+id/tvPostMsg"
         android:layout_alignEnd="@+id/tvPostMsg"
         android:background="@drawable/post_message_background"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:id="@+id/llMsgDisplay"

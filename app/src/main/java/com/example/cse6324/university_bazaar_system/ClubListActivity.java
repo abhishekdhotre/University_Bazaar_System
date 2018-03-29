@@ -26,7 +26,8 @@ public class ClubListActivity extends AppCompatActivity {
         btnCreateNewClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent myIntent = new Intent(ClubListActivity.this, Club.class);
+                ClubListActivity.this.startActivity(myIntent);
             }
         });
 
@@ -35,7 +36,7 @@ public class ClubListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(ClubListActivity.this, ManageClubActivity.class);
-                myIntent.putExtra("key", "Advance SE"); //Optional parameters
+                myIntent.putExtra("key", "AdvanceSE"); //Optional parameters
                 ClubListActivity.this.startActivity(myIntent);
             }
         });

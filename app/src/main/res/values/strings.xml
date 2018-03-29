@@ -22,6 +22,13 @@
         completions."
     </string>
 
+    <string name="hint_Club_Description">Club Description</string>
+
+    <string name="hint_Club_Name">Club Name</string>
+
+    <string name="hint_addMembers">Add Members</string>
+
+
     <string name="email">Email</string>
     <string name="minimum_password">Password too short, enter minimum 8 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>

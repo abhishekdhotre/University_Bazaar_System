@@ -26,7 +26,9 @@
         <activity android:name=".ResetPasswordActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ClubHomeActivity" />
-        <activity android:name=".ManageClubActivity"></activity>
+        <activity android:name=".ManageClubActivity" />
+        <activity android:name=".ClubListActivity"></activity>
+        <activity android:name=".Club"/>
     </application>
 
 </manifest>
