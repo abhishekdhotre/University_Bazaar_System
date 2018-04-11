@@ -22,12 +22,6 @@
         completions."
     </string>
 
-    <string name="hint_Club_Description">Club Description</string>
-
-    <string name="hint_Club_Name">Club Name</string>
-
-    <string name="hint_addMembers">Add Members</string>
-
 
     <string name="email">Email</string>
     <string name="minimum_password">Password too short, enter minimum 8 characters!</string>
@@ -66,12 +60,12 @@
     <string name="market">Marketplace</string>
     <string name="logout">Logout</string>
 
-    
+
     <!-- Strings related to creat club-->
     <string name="hint_Club_Description">Club Description</string>
     <string name="hint_Club_Name">Club Name</string>
     <string name="hint_addMembers">Add Members</string>
-    
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
@@ -165,4 +159,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="FirstTag">1</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_messaging">MessagingActivity</string>
+    <string name="tab_text_1">Individual</string>
+    <string name="tab_text_2">Group</string>
+    <string name="tab_text_3">Broadcast</string>
 </resources>

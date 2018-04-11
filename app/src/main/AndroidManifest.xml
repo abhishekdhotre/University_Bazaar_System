@@ -27,8 +27,12 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ClubHomeActivity" />
         <activity android:name=".ManageClubActivity" />
-        <activity android:name=".ClubListActivity"></activity>
-        <activity android:name=".Club"/>
+        <activity android:name=".ClubListActivity" />
+        <activity android:name=".Club" />
+        <activity
+            android:name=".MessagingActivity"
+            android:label="@string/title_activity_messaging"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -135,12 +135,8 @@ public class EntryScreenActivity extends AppCompatActivity
             }
 
         } else if (id == R.id.nav_messages) {
-            FragmentManager fragMan = getFragmentManager();
-            Fragment myFrag = MessagesFragment.newInstance("", "");
-            FragmentTransaction transaction = fragMan.beginTransaction();
-            transaction.replace(R.id.content_entry, myFrag);
-            transaction.addToBackStack(null);
-            transaction.commit();
+            Intent myIntent = new Intent(EntryScreenActivity.this, MessagingActivity.class);
+            EntryScreenActivity.this.startActivity(myIntent);
         } else if (id == R.id.nav_marketplace) {
             FragmentManager fragMan = getFragmentManager();
             Fragment myFrag = MarketplaceFragment.newInstance("", "");
