@@ -1,21 +1,15 @@
 package com.example.cse6324.university_bazaar_system;
 
-import android.app.ProgressDialog;
-import android.content.Context;
+import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -26,14 +20,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.app.Activity.RESULT_OK;
 
 
 /**
@@ -166,7 +156,7 @@ public class SellLendFragment extends Fragment {
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         db.collection("items").document(str).set(item);
 
-                        Toast.makeText(getContext(), "Merchandise listed for " + mType, Toast.LENGTH_SHORT);
+                        Toast.makeText(getContext(), "Merchandise listed for " + mType, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
