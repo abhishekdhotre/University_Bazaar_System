@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.cse6324.university_bazaar_system.SellLendFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rgSellLend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_Sell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/header"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="Sell" />
+        <RadioButton android:id="@+id/radio_Lend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lend"
+            android:textSize="@dimen/header" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvMerchandiseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rgSellLend"
+        android:textSize="@dimen/header"
+        android:text="Merchandise Name"/>
+
+    <EditText
+        android:id="@+id/etMerchandiseName"
+        android:layout_width="100dp"
+        android:maxLength="100"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:layout_toRightOf="@id/tvMerchandiseName"
+        android:layout_alignBottom="@id/tvMerchandiseName"/>
+
+    <TextView
+        android:id="@+id/tvMerchandiseDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/tvMerchandiseName"
+        android:textSize="@dimen/header"
+        android:text="Merchandise Description"/>
+
+    <EditText
+        android:id="@+id/etMerchandiseDesc"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:layout_below="@id/tvMerchandiseDesc"
+        android:minLines="3"
+        android:maxLength="300"/>
+
+
+    <TextView
+        android:id="@+id/tvMerchandisePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/etMerchandiseDesc"
+        android:textSize="@dimen/header"
+        android:text="Merchandise Price"/>
+
+    <EditText
+        android:id="@+id/etMerchandisePrice"
+        android:layout_width="100dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="@dimen/header"
+        android:layout_toRightOf="@id/tvMerchandisePrice"
+        android:layout_alignBottom="@id/tvMerchandisePrice"/>
+
+
+    <TextView
+        android:id="@+id/tvMerchandiseDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/tvMerchandisePrice"
+        android:textSize="@dimen/header"
+        android:text="Duration"/>
+
+    <EditText
+        android:id="@+id/etMerchandiseDuration"
+        android:layout_width="100dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:layout_toRightOf="@id/tvMerchandiseDuration"
+        android:layout_alignBottom="@id/tvMerchandiseDuration"/>
+
+    <TextView
+        android:id="@+id/tvMerchandiseLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/tvMerchandiseDuration"
+        android:textSize="@dimen/header"
+        android:text="Location"/>
+
+    <EditText
+        android:id="@+id/etMerchandiseLocation"
+        android:layout_width="100dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:layout_toRightOf="@id/tvMerchandiseLocation"
+        android:layout_alignBottom="@id/tvMerchandiseLocation"/>
+
+    <Button
+        android:id="@+id/btnChooseImage"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Choose Image"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvMerchandiseLocation"/>
+
+    <Button
+        android:id="@+id/btnPost"
+        android:text="Post"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
