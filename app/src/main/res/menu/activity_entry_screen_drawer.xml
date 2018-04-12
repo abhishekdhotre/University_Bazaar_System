@@ -19,7 +19,19 @@
         <item
             android:id="@+id/nav_marketplace"
             android:icon="@drawable/ic_shopping_cart_black_24dp"
-            android:title="@string/market" />
+            android:title="@string/market">
+            <menu>
+                <item
+                    android:id="@+id/sellLend"
+                    android:title="Sell/Lend"/>
+                <item
+                    android:id="@+id/exchangeMerchandise"
+                    android:title="Exchange Merchandise"/>
+                <item
+                    android:id="@+id/browseMerchandise"
+                    android:title="Browse Merchandise"></item>
+            </menu>
+        </item>
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_logout"
