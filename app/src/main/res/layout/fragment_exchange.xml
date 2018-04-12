@@ -13,14 +13,10 @@
 
     <EditText
         android:id="@+id/etExchangeName"
-        android:layout_width="100dp"
-        android:maxLength="100"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_alignParentEnd="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/header"
-        android:layout_toRightOf="@id/tvExchangeName"
-        android:layout_alignBottom="@id/tvExchangeName"/>
+        android:layout_below="@id/tvExchangeName"
+        android:maxLength="100"/>
 
 
     <TextView
@@ -28,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_below="@+id/tvExchangeName"
+        android:layout_below="@+id/etExchangeName"
         android:textSize="@dimen/header"
         android:text="Exchange Description"/>
 
@@ -54,14 +50,11 @@
 
     <EditText
         android:id="@+id/etExchangeCriteria"
-        android:layout_width="100dp"
+        android:layout_width="match_parent"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_alignParentEnd="true"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:textSize="@dimen/header"
-        android:layout_toRightOf="@id/tvExchangeCriteria"
-        android:layout_alignBottom="@id/tvExchangeCriteria"/>
+        android:layout_below="@id/tvExchangeCriteria"/>
 
     <Button
         android:id="@+id/btnExchangeImage"
@@ -71,7 +64,7 @@
         android:layout_weight="1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvExchangeCriteria"/>
+        android:layout_below="@id/etExchangeCriteria"/>
 
     <Button
         android:id="@+id/btnExchange"
