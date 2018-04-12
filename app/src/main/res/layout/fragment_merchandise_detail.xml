@@ -1,13 +1,121 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context="com.example.cse6324.university_bazaar_system.MerchandiseDetailFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageMerchandiseDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/nameMerchandiseDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageMerchandiseDetail"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="45dp"
+        android:text="----" />
+
+    <TextView
+        android:id="@+id/descriptionMerchandiseDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/nameMerchandiseDetail"
+        android:layout_below="@+id/nameMerchandiseDetail"
+        android:layout_marginTop="42dp"
+        android:text="----" />
+
+    <TextView
+        android:id="@+id/tvStaticType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/descriptionMerchandiseDetail"
+        android:layout_below="@+id/descriptionMerchandiseDetail"
+        android:layout_marginTop="41dp"
+        android:text="Type:" />
+
+    <TextView
+        android:id="@+id/typeExchangeMerchandise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvStaticType"
+        android:layout_toStartOf="@+id/imageMerchandiseDetail" />
+
+    <TextView
+        android:id="@+id/tvStaticPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvStaticType"
+        android:layout_below="@+id/tvStaticType"
+        android:layout_marginTop="23dp"
+        android:text="Price:" />
+
+    <TextView
+        android:id="@+id/priceMerchandiseDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvStaticPrice"
+        android:layout_toStartOf="@+id/typeExchangeMerchandise"
+        android:text="$" />
+
+    <TextView
+        android:id="@+id/tvStaticDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/typeExchangeMerchandise"
+        android:layout_alignBottom="@+id/typeExchangeMerchandise"
+        android:layout_toEndOf="@+id/imageMerchandiseDetail"
+        android:text="Duration"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/durationMerchandiseDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvStaticDuration"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@+id/tvStaticDuration"
+        android:text="mm/dd/yy"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvStaticCriteria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvStaticPrice"
+        android:layout_below="@+id/tvStaticPrice"
+        android:layout_marginTop="22dp"
+        android:text="Exchange Criteria:"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/exchangeCriteriaMerchandiseDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/priceMerchandiseDetail"
+        android:layout_alignTop="@+id/tvStaticCriteria"
+        android:text="TextView"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/interestedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp"
+        android:text="Interested" />
+
+</RelativeLayout>
