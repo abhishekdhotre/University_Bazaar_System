@@ -1,13 +1,86 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cse6324.university_bazaar_system.ExchangeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tvExchangeName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:text="Exchange Name"/>
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/etExchangeName"
+        android:layout_width="100dp"
+        android:maxLength="100"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:layout_toRightOf="@id/tvExchangeName"
+        android:layout_alignBottom="@id/tvExchangeName"/>
+
+
+    <TextView
+        android:id="@+id/tvExchangeDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/tvExchangeName"
+        android:textSize="@dimen/header"
+        android:text="Exchange Description"/>
+
+    <EditText
+        android:id="@+id/etExchangeDesc"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/header"
+        android:layout_below="@id/tvExchangeDesc"
+        android:minLines="3"
+        android:maxLength="300"/>
+
+
+    <TextView
+        android:id="@+id/tvExchangeCriteria"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_below="@+id/etExchangeDesc"
+        android:textSize="@dimen/header"
+        android:text="Exchange Criteria"/>
+
+    <EditText
+        android:id="@+id/etExchangeCriteria"
+        android:layout_width="100dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textSize="@dimen/header"
+        android:layout_toRightOf="@id/tvExchangeCriteria"
+        android:layout_alignBottom="@id/tvExchangeCriteria"/>
+
+    <Button
+        android:id="@+id/btnExchangeImage"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Choose Image"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvExchangeCriteria"/>
+
+    <Button
+        android:id="@+id/btnExchange"
+        android:text="Post"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
