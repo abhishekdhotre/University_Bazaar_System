@@ -102,7 +102,12 @@ public class SellLendFragment extends Fragment {
         }) ;
 
         final EditText etDuration = myFragmentView.findViewById(R.id.etMerchandiseDuration);
+        final EditText etName = myFragmentView.findViewById(R.id.etMerchandiseName);
+        final EditText etDesc = myFragmentView.findViewById(R.id.etMerchandiseDesc);
+        final EditText etPrice = myFragmentView.findViewById(R.id.etMerchandisePrice);
+        final EditText etLocation = myFragmentView.findViewById(R.id.etMerchandiseLocation);
         final RadioGroup rdButton = myFragmentView.findViewById(R.id.rgSellLend);
+
         rdButton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -113,14 +118,15 @@ public class SellLendFragment extends Fragment {
                     etDuration.setEnabled(true);
                     mType = "Lend";
                 }
+                etDuration.setText("");
+                etName.setText("");
+                etDesc.setText("");
+                etPrice.setText("");
+                etLocation.setText("");
             }
         });
 
         Button btnPost = myFragmentView.findViewById(R.id.btnPost);
-        final EditText etName = myFragmentView.findViewById(R.id.etMerchandiseName);
-        final EditText etDesc = myFragmentView.findViewById(R.id.etMerchandiseDesc);
-        final EditText etPrice = myFragmentView.findViewById(R.id.etMerchandisePrice);
-        final EditText etLocation = myFragmentView.findViewById(R.id.etMerchandiseLocation);
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
