@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,8 +30,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class EntryScreenActivity extends AppCompatActivity
@@ -38,7 +42,10 @@ public class EntryScreenActivity extends AppCompatActivity
 
     User currentUser;
     FirebaseFirestore db;
+    FirebaseStorage storage;
+    StorageReference storageRef;
     ArrayList<Map<String, Object>> items;
+    Map<String, byte[]> images;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +76,12 @@ public class EntryScreenActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
         DocumentReference docRef = db.collection("users").document(auth.getUid());
         items = new ArrayList<>();
-
+        images = new HashMap<>();
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -94,6 +104,28 @@ public class EntryScreenActivity extends AppCompatActivity
                                         items.add(document.getData());
                                     }
                                 }
+
+                                AsyncTask.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        for (final Map<String, Object> map : items) {
+                                            StorageReference islandRef = storageRef.child("images/" + map.get("imgPath").toString());
+
+                                            final long KB200 = 1024 * 400;
+                                            islandRef.getBytes(KB200).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                                @Override
+                                                public void onSuccess(byte[] bytes) {
+                                                    images.put(map.get("imgPath").toString(), bytes);
+                                                }
+                                            }).addOnFailureListener(new OnFailureListener() {
+                                                @Override
+                                                public void onFailure(@NonNull Exception exception) {
+                                                    // Handle any errors
+                                                }
+                                            });
+                                        }
+                                    }
+                                });
                             }
                         });
             }
