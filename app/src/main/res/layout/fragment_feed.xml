@@ -14,14 +14,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ubslogo"
-            android:focusedByDefault="true"
             android:layout_centerHorizontal="true" />
 
         <EditText
             android:id="@+id/tvPostEntryMsg"
             android:layout_width="match_parent"
             android:layout_height="75px"
-            android:focusedByDefault="false"
+            android:focusedByDefault="true"
             android:layout_below="@+id/imgEntryScreenLogo"
             android:background="#F0F3F4"
             android:maxLength="300"

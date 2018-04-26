@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -90,6 +91,8 @@ public class FeedFragment extends Fragment {
         final View myFragmentView = inflater.inflate(R.layout.fragment_feed, container, false);
         final Button btn = myFragmentView.findViewById(R.id.btnPostEntry);
         final EditText etPost = myFragmentView.findViewById(R.id.tvPostEntryMsg);
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         ReadAllPosts(myFragmentView, "UTAgroup");
         btn.requestFocus();
