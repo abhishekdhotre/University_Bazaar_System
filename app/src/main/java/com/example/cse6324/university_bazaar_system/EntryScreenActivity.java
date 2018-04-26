@@ -85,15 +85,6 @@ public class EntryScreenActivity extends AppCompatActivity
         View headerView = navigationView.getHeaderView(0);
         final TextView textView  = (TextView) headerView.findViewById(R.id.textView);
 
-        //Method to go to edit profile on clicking the header of the Navigation Drawer.
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(EntryScreenActivity.this, EditProfileActivity.class);
-                EntryScreenActivity.this.startActivity(myIntent);
-            }
-        });
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         db = FirebaseFirestore.getInstance();
@@ -103,6 +94,15 @@ public class EntryScreenActivity extends AppCompatActivity
         DocumentReference docRef = db.collection("users").document(auth.getUid());
         items = new ArrayList<>();
         images = new HashMap<>();
+
+        //Method to go to edit profile on clicking the header of the Navigation Drawer.
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(EntryScreenActivity.this, EditProfileActivity.class);
+                EntryScreenActivity.this.startActivity(myIntent);
+            }
+        });
 
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override

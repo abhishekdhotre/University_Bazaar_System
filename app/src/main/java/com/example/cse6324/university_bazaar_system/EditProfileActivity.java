@@ -176,7 +176,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
                     docRef.update(user);
                     progressBar.setVisibility(View.GONE);
-                    auth.getCurrentUser().updatePassword(pass);
+
+                    if(!pass.equals(""))
+                        auth.getCurrentUser().updatePassword(pass);
 
                     Toast.makeText(EditProfileActivity.this,"Profile Updated Successfully",Toast.LENGTH_SHORT).show();
 
