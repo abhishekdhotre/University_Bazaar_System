@@ -151,6 +151,10 @@ public class ExchangeFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }@Override
+    public void onResume() {
+        super.onResume();
+        ((EntryScreenActivity)getActivity()).setActionBarTitle(R.string.exchange);
     }
 
     /*@Override

@@ -13,9 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -32,8 +36,8 @@ public class MerchandiseDetailFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
 
-    // TODO: Rename and change types of parameters
-    private int mParam1;
+    @SuppressWarnings("unchecked")
+    private Map<String, Object> mParam1;
 
     private ArrayList<Map<String, Object>> items;
     private Map<String, byte[]> images;
@@ -49,14 +53,13 @@ public class MerchandiseDetailFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment MerchandiseDetailFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MerchandiseDetailFragment newInstance(int param1) {
+    public static MerchandiseDetailFragment newInstance(Bundle param1) {
         MerchandiseDetailFragment fragment = new MerchandiseDetailFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, param1);
+        args.putBundle(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,7 +68,8 @@ public class MerchandiseDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getInt(ARG_PARAM1);
+            Bundle b = (Bundle)getArguments().get(ARG_PARAM1);
+            mParam1 = new Gson().fromJson(b.getString("item"), new TypeToken<Map<String, Object>>(){}.getType());
         }
     }
 
@@ -87,7 +91,7 @@ public class MerchandiseDetailFragment extends Fragment {
         items = ((EntryScreenActivity)getActivity()).items;
         images = ((EntryScreenActivity)getActivity()).images;
 
-        Map<String, Object> i = items.get(mParam1);
+        Map<String, Object> i = mParam1;
         byte[] img = images.get(i.get("imgPath"));
         imgview.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
         name.setText(i.get("etName").toString());

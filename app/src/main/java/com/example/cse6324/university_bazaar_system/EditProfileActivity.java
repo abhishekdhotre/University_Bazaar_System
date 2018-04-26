@@ -1,5 +1,6 @@
 package com.example.cse6324.university_bazaar_system;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,7 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends Activity {
 
 
     private EditText inputEmail, inputPassword, confPassword, name, phonenum, sid;
@@ -52,10 +53,6 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         auth = FirebaseAuth.getInstance();
         regLayout = findViewById(R.id.edit_profile_layout);

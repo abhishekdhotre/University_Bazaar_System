@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,7 +97,7 @@ public class EntryScreenActivity extends AppCompatActivity
         images = new HashMap<>();
 
         //Method to go to edit profile on clicking the header of the Navigation Drawer.
-        textView.setOnClickListener(new View.OnClickListener() {
+        headerView.findViewById(R.id.user_name_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(EntryScreenActivity.this, EditProfileActivity.class);

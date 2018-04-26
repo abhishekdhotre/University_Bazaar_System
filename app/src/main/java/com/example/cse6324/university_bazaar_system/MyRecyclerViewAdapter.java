@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,13 +17,16 @@ import java.util.ArrayList;
 
 public class MyRecyclerViewAdapter extends RecyclerView
         .Adapter<MyRecyclerViewAdapter
-        .DataObjectHolder> {
+        .DataObjectHolder>
+        implements Filterable {
     private static String LOG_TAG = "MyRecyclerViewAdapter";
-    private ArrayList<Map<String, Object>> items;
+
+    @SuppressWarnings("unchecked")
+    private ArrayList<Map<String, Object>> items, mFilteredList;
     private Map<String, byte[]> images;
     private static MyClickListener myClickListener;
 
-    public static class DataObjectHolder extends RecyclerView.ViewHolder
+    public class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
             .OnClickListener {
         ImageView img;
@@ -31,13 +36,13 @@ public class MyRecyclerViewAdapter extends RecyclerView
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.item_pic);
             item_name = (TextView) itemView.findViewById(R.id.item_name);
-            Log.i(LOG_TAG, "Adding Listener");
+            //Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getAdapterPosition(), v);
+            myClickListener.onItemClick(MyRecyclerViewAdapter.this.mFilteredList.get(getAdapterPosition()), v);
         }
     }
 
@@ -47,6 +52,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
     public MyRecyclerViewAdapter(ArrayList<Map<String, Object>> its, Map<String, byte[]> imgs) {
         items = its;
+        mFilteredList = its;
         images = imgs;
     }
 
@@ -62,9 +68,9 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        byte[] img = images.get(items.get(position).get("imgPath"));
+        byte[] img = images.get(mFilteredList.get(position).get("imgPath"));
         holder.img.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
-        holder.item_name.setText(items.get(position).get("etName").toString());
+        holder.item_name.setText(mFilteredList.get(position).get("etName").toString());
     }
 /*
     public void addItem(ArrayList<Map<String, Object>> dataObj, int index) {
@@ -79,10 +85,44 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return mFilteredList.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    mFilteredList = items;
+                } else {
+                    ArrayList<Map<String, Object>> filteredList = new ArrayList<>();
+
+                    for (Map<String, Object> item : items) {
+                        if (((String)item.get("etName")).toLowerCase().contains(charString) || ((String)item.get("etDesc")).toLowerCase().contains(charString)) {
+                            filteredList.add(item);
+                        }
+                    }
+                    mFilteredList = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mFilteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                mFilteredList = (ArrayList<Map<String, Object>>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public interface MyClickListener {
-        public void onItemClick(int position, View v);
+        public void onItemClick(Map<String, Object> item, View v);
     }
 }

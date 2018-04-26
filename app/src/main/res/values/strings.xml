@@ -62,6 +62,9 @@
     <string name="messages">Messages</string>
     <string name="market">Marketplace</string>
     <string name="logout">Logout</string>
+    <string name="sell">Sell/Lend Merchandise</string>
+    <string name="exchange">Exchange Merchandise</string>
+    <string name="browse">Browse Merchandise</string>
 
 
     <!-- Strings related to creat club-->

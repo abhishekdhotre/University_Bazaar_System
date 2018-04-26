@@ -9,8 +9,17 @@ import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.SearchView;
+
+import com.google.gson.Gson;
+
+import java.util.Map;
 
 
 /**
@@ -27,7 +36,7 @@ public class BuyFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MyRecyclerViewAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
 
@@ -62,6 +71,7 @@ public class BuyFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -87,12 +97,16 @@ public class BuyFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        ((EntryScreenActivity)getActivity()).setActionBarTitle(R.string.browse);
         ((MyRecyclerViewAdapter) mAdapter).setOnItemClickListener(new MyRecyclerViewAdapter
                 .MyClickListener() {
             @Override
-            public void onItemClick(int position, View v) {
+            public void onItemClick(Map<String, Object> item, View v) {
+                ((InputMethodManager)((EntryScreenActivity)getActivity()).getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(((EntryScreenActivity)getActivity()).getCurrentFocus().getWindowToken(), 0);
                 FragmentManager fragMan = getFragmentManager();
-                Fragment myFrag = MerchandiseDetailFragment.newInstance(position);
+                Bundle bundle = new Bundle();
+                bundle.putString("item", new Gson().toJson(item));
+                Fragment myFrag = MerchandiseDetailFragment.newInstance(bundle);
                 FragmentTransaction transaction = fragMan.beginTransaction();
                 transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
                 transaction.replace(R.id.content_entry, myFrag);
@@ -102,11 +116,38 @@ public class BuyFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.buy_search, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
+        final MenuItem search = menu.findItem(R.id.buy_search);
+        final SearchView searchView = (SearchView) search.getActionView();
+        search(searchView);
+        searchView.setIconified(true);
+        searchView.setIconified(false);
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void search(SearchView searchView) {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
     }
 /*
     @Override

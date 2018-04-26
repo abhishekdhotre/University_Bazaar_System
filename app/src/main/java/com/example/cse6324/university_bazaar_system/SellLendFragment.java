@@ -178,6 +178,12 @@ public class SellLendFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        ((EntryScreenActivity)getActivity()).setActionBarTitle(R.string.sell);
+    }
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PICK_IMAGE_REQUEST && data != null && data.getData() != null )
