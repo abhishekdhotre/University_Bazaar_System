@@ -37,6 +37,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class EntryScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -46,6 +50,7 @@ public class EntryScreenActivity extends AppCompatActivity
     StorageReference storageRef;
     ArrayList<Map<String, Object>> items;
     Map<String, byte[]> images;
+    AdView mAdview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,12 @@ public class EntryScreenActivity extends AppCompatActivity
         setContentView(R.layout.activity_entry_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdview = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdview.loadAd(adRequest);
 
         FragmentManager fragMan = getFragmentManager();
         Fragment myFrag = FeedFragment.newInstance("", "");

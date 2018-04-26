@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.cse6324.university_bazaar_system.ClubListActivity">
 
+    <include layout="@layout/admob_layout"></include>
+
     <Button
         android:id="@+id/btnCreateNewClub"
         android:layout_width="wrap_content"

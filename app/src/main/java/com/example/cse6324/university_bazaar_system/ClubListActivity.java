@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -17,11 +20,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class ClubListActivity extends AppCompatActivity {
 
+    AdView mAdview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_list);
 
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdview = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdview.loadAd(adRequest);
         Button btnCreateNewClub = findViewById(R.id.btnCreateNewClub);
         btnCreateNewClub.setOnClickListener(new View.OnClickListener() {
             @Override
