@@ -108,7 +108,7 @@ public class BuyFragment extends Fragment {
                 bundle.putString("item", new Gson().toJson(item));
                 Fragment myFrag = MerchandiseDetailFragment.newInstance(bundle);
                 FragmentTransaction transaction = fragMan.beginTransaction();
-                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, 0, 0);
+                transaction.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_out_right, R.animator.slide_in_right, R.animator.slide_out_left);
                 transaction.replace(R.id.content_entry, myFrag);
                 transaction.addToBackStack(null);
                 transaction.commit();

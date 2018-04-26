@@ -34,8 +34,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/imageMerchandiseDetail"
                 android:layout_marginStart="17dp"
-                android:layout_marginTop="25dp"
-                android:text="----" />
+                android:layout_marginTop="25dp" />
 
             <TextView
                 android:id="@+id/descriptionMerchandiseDetail"
@@ -44,8 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/nameMerchandiseDetail"
                 android:layout_below="@+id/nameMerchandiseDetail"
-                android:layout_marginTop="40dp"
-                android:text="----" />
+                android:layout_marginTop="40dp" />
 
             <TextView
                 android:id="@+id/tvStaticType"
@@ -137,7 +135,5 @@
                 android:text="Interested" />
 
         </RelativeLayout>
-
     </ScrollView>
-
 </RelativeLayout>
