@@ -31,11 +31,13 @@ public class MyRecyclerViewAdapter extends RecyclerView
             .OnClickListener {
         ImageView img;
         TextView item_name;
+        TextView item_desc;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.item_pic);
             item_name = (TextView) itemView.findViewById(R.id.item_name);
+            item_desc = (TextView) itemView.findViewById(R.id.item_desc);
             //Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
@@ -71,6 +73,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         byte[] img = images.get(mFilteredList.get(position).get("imgPath"));
         holder.img.setImageBitmap(BitmapFactory.decodeByteArray(img, 0, img.length));
         holder.item_name.setText(mFilteredList.get(position).get("etName").toString());
+        holder.item_desc.setText(mFilteredList.get(position).get("etDesc").toString());
     }
 /*
     public void addItem(ArrayList<Map<String, Object>> dataObj, int index) {
