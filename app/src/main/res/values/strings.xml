@@ -31,6 +31,7 @@
     <string name="send_password_reset_email">Send Password reset email</string>
     <string name="remove_user">Remove user</string>
     <string name="new_pass">New Password</string>
+    <string name="confirm_new_pass">Confirm New Password</string>
     <string name="title_activity_profile">Firebase</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
@@ -41,6 +42,7 @@
     <string name="hint_name">Full Name</string>
     <string name="btn_login">LOGIN</string>
     <string name="btn_register">REGISTER</string>
+    <string name="btn_submit">Submit</string>
     <string name="btn_link_to_register">Not a member? Register now!</string>
     <string name="btn_link_to_login">Already registered. Login Me!</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
@@ -49,6 +51,7 @@
     <string name="btn_back"><![CDATA[<< Back]]></string>
     <string name="hint_new_email">New Email</string>
     <string name="btn_change">Change</string>
+    <string name="btn_change_password">Change Password</string>
     <string name="btn_send">Send</string>
     <string name="btn_remove">Remove</string>
     <string name="btn_sign_out">Sign Out</string>
@@ -165,4 +168,5 @@
     <string name="tab_text_1">Individual</string>
     <string name="tab_text_2">Group</string>
     <string name="tab_text_3">Broadcast</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
 </resources>
