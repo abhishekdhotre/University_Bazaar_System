@@ -3,9 +3,30 @@ package com.example.cse6324.university_bazaar_system;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -25,6 +46,8 @@ public class FeedFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private int count = 0;
 
     private OnFragmentInteractionListener mListener;
 
@@ -56,7 +79,7 @@ public class FeedFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            ((EntryScreenActivity)getActivity()).setActionBarTitle(R.string.home);
+            ((EntryScreenActivity) getActivity()).setActionBarTitle(R.string.home);
         }
     }
 
@@ -64,7 +87,39 @@ public class FeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feed, container, false);
+        final View myFragmentView = inflater.inflate(R.layout.fragment_feed, container, false);
+        final Button btn = myFragmentView.findViewById(R.id.btnPostEntry);
+        final EditText etPost = myFragmentView.findViewById(R.id.tvPostEntryMsg);
+
+        ReadAllPosts(myFragmentView, "UTAgroup");
+        btn.requestFocus();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(etPost.getText().toString().length() == 0){
+                    Toast.makeText(getContext(), "Enter text to post", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    count++;
+                    CollectionReference doc = FirebaseFirestore.getInstance().collection("posts").document("UTAgroup").collection("allposts");
+                    Map<String, Object> data = new HashMap<>();
+                    final SimpleDateFormat sdf = new SimpleDateFormat("\"EEE, d MMM yyyy HH:mm:ss Z\"");
+                    data.put("postedat", sdf.format(Calendar.getInstance().getTime()));
+                    data.put("postedby", FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    data.put("postmsg", etPost.getText().toString());
+                    try{
+                        doc.document("post" + count).set(data);
+                    }catch(Exception ex){
+                        String abc = ex.getMessage();
+                    }
+
+                    Toast.makeText(getContext(), "Posted Successfully", Toast.LENGTH_SHORT).show();
+                    ReadAllPosts(myFragmentView, "UTAgroup");
+                }
+            }
+        });
+
+        return myFragmentView;
     }
 
     @Override
@@ -99,5 +154,43 @@ public class FeedFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private void ReadAllPosts(View mView, String clubName) {
+        final LinearLayout linearLayout = mView.findViewById(R.id.llNewsFeedDisplay);
+        linearLayout.removeAllViews();
+        FirebaseFirestore.getInstance().collection("posts").document(clubName).collection("allposts").orderBy("postedat", Query.Direction.DESCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                TextView tvDisplayPosts = new TextView(getContext());
+                                tvDisplayPosts.setTextColor(getResources().getColor(R.color.white));
+                                tvDisplayPosts.setBackground(getResources().getDrawable(R.drawable.post_message_background));
+                                tvDisplayPosts.setTextSize(20);
+                                LinearLayout.LayoutParams tvLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                tvLayoutParams.setMargins(50, 10, 50, 10);
+                                tvDisplayPosts.setLayoutParams(tvLayoutParams);
+                                tvDisplayPosts.setText(document.get("postmsg").toString());
+
+                                TextView tvPostdetails = new TextView(getContext());
+                                tvPostdetails.setTextSize(10);
+                                tvPostdetails.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_END);
+                                tvPostdetails.setLayoutParams(tvLayoutParams);
+                                tvPostdetails.setText(document.get("postmsg").toString());
+                                StringBuilder fields = new StringBuilder("");
+                                fields.append("\nPosted By: ").append(document.get("postedby"));
+                                fields.append("\nPosted At: ").append(document.get("postedat"));
+                                tvPostdetails.setText(fields.toString());
+                                linearLayout.addView(tvDisplayPosts);
+                                linearLayout.addView(tvPostdetails);
+                            }
+                        } else {
+
+                        }
+                    }
+                });
     }
 }
